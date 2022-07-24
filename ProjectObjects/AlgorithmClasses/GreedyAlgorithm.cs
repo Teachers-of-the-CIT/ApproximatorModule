@@ -17,7 +17,7 @@ namespace ProjectObjects.AlgorithmClasses
         public static bool SegmentComparison(List<Segment> segments)
         {
             bool flag = true;
-            for (int i = 0; i < segments.Count; i++)
+            for (int i = 1; i < segments.Count; i++)
             {
                 if (segments[i].Determination > AuxiliaryTools.AcceptableAccuracyValue)
                 {
