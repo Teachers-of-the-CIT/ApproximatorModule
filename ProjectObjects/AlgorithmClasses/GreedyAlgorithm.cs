@@ -44,10 +44,10 @@ namespace ProjectObjects.AlgorithmClasses
             {
                 CountSegments++;
                 
-                if((PreviousSegment.NumberEndNode - PreviousSegment.NumberInitialNode) == (SegmentContainer.segments[0].NumberEndNode / CountSegments))
-                {
-                    continue;
-                }
+                //if((PreviousSegment.NumberEndNode - PreviousSegment.NumberInitialNode) == (SegmentContainer.segments[0].NumberEndNode / CountSegments))
+                //{
+                //    continue;
+                //}
                 if (SegmentContainer.segments[0].NumberEndNode / CountSegments == 1)
                 {
                     return;
@@ -63,11 +63,14 @@ namespace ProjectObjects.AlgorithmClasses
                     SegmentContainer.segments[SegmentContainer.segments.Count - 1].Determination = AuxiliaryTools.CalculationDetermination(SegmentContainer.segments[SegmentContainer.segments.Count - 1].Y, SegmentContainer.segments[SegmentContainer.segments.Count - 1].YPractical);
                     PreviousSegment = SegmentContainer.segments[SegmentContainer.segments.Count - 1];
                 }
+                List <Segment> TempSegments = new List<Segment>();
+                TempSegments.AddRange(SegmentContainer.segments);
+                TempSegments.RemoveAt(0);
                 SegmentContainer.temporarySegments.Add(new TemporarySegment()
                 {
                     SegmentLength = SegmentContainer.segments[SegmentContainer.segments.Count - 1].NumberEndNode - SegmentContainer.segments[SegmentContainer.segments.Count - 1].NumberInitialNode,
                     AcceptableAccuracyValue = AuxiliaryTools.AcceptableAccuracyValue,
-                    WorstCoefficientDetermination = SegmentContainer.segments.Min(s => s.Determination)
+                    WorstCoefficientDetermination = TempSegments.Min(s => s.Determination)
                 });
             }
             while (!SegmentComparison(SegmentContainer.segments));
