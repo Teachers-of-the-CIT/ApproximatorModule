@@ -52,6 +52,10 @@ namespace ProjectObjects.AlgorithmClasses
                 {
                     return;
                 }
+                if((SegmentContainer.segments[0].NumberEndNode - (SegmentContainer.segments[0].NumberEndNode / CountSegments) * CountSegments) != 0)
+                {
+                    CountSegments += (SegmentContainer.segments[0].NumberEndNode - (SegmentContainer.segments[0].NumberEndNode / CountSegments) * CountSegments) / (SegmentContainer.segments[0].NumberEndNode / CountSegments);
+                }
                 for (int i = 0; i < CountSegments; i++)
                 {
                     SegmentContainer.segments.Add(new Segment(AuxiliaryTools.X, AuxiliaryTools.Y, SegmentContainer.segments[0].NumberEndNode / CountSegments * (i + 1) - SegmentContainer.segments[0].NumberEndNode / CountSegments, SegmentContainer.segments[0].NumberEndNode / CountSegments * (i + 1), SegmentContainer.segments[SegmentContainer.segments.Count - 1])
@@ -61,8 +65,10 @@ namespace ProjectObjects.AlgorithmClasses
                     SegmentContainer.segments[SegmentContainer.segments.Count - 1].LeastSquaresMethod();
                     SegmentContainer.segments[SegmentContainer.segments.Count - 1].CalculatingPracticalValue();
                     SegmentContainer.segments[SegmentContainer.segments.Count - 1].Determination = AuxiliaryTools.CalculationDetermination(SegmentContainer.segments[SegmentContainer.segments.Count - 1].Y, SegmentContainer.segments[SegmentContainer.segments.Count - 1].YPractical);
+                    
                     PreviousSegment = SegmentContainer.segments[SegmentContainer.segments.Count - 1];
                 }
+
                 List <Segment> TempSegments = new List<Segment>();
                 TempSegments.AddRange(SegmentContainer.segments);
                 TempSegments.RemoveAt(0);
