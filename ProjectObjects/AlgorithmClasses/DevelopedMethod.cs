@@ -38,8 +38,9 @@ namespace ProjectObjects.AlgorithmClasses
                     CalculatingComplexity.CountComparisons++;
                 }
                 while (segment1.Determination < AuxiliaryTools.AcceptableAccuracyValue);
-                segment1.NumberInitialNode++;
+                
                 SegmentContainer.segments.Add(segment1);
+                //segment1.NumberInitialNode++;
             }
             while (segment1.X.Length > 0);
         }
